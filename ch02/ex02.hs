@@ -9,8 +9,9 @@ drop2 n xs = if n <= 0 || null xs
     else drop2 (n - 1) (tail xs)
 
 drop3 :: Int -> [a] -> [a]
-drop3 0 xs = xs
-drop3 n xs = drop3 (n - 1) (tail xs)
+drop3 n xs 
+    | n <= 0 = xs
+    | n > 0 = drop3 (n - 1) (tail xs)
 
 isOdd :: Int -> Bool
 isOdd n = mod n 2 == 1
