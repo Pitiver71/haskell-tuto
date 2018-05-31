@@ -75,4 +75,25 @@ takeWhile2 f xs = loop xs []
 
 takeWhile3 :: (a -> Bool) -> [a] -> [a]
 takeWhile3 f xs = foldr (\x acc -> if f x then x : acc else []) [] xs
-                            
+
+fib :: Int -> [Int]
+fib 0 = []
+fib 1 = [0]
+fib 2 = [0, 1]
+fib n = loop (n - 2) $ fib 2
+      where loop 0 xs = xs
+            loop n xs = loop (n - 1) $ xs ++ [last xs + (last $ init xs)]
+
+anyFold :: Foldable t => (a -> Bool) -> t a -> Bool
+anyFold f xs | length xs == 0 = False
+             | otherwise = last $ foldr (\x acc -> if f x then [True] else False : acc) [] xs
+
+myFilter :: (a -> Bool) -> [a] -> [a]
+myFilter f [] = []
+myFilter f xs = loop xs []
+      where loop [] acc = acc
+            loop (h:t) acc | f h = loop t $ acc ++ [h]
+                           | otherwise = loop t acc
+
+filterEven = myFilter even
+filterOdd = myFilter odd
