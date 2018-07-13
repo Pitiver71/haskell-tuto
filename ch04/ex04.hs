@@ -24,7 +24,7 @@ splitWith p xs = loop [] [] xs
           loop curr acc (x:xs) | not $ p x = loop (curr ++ [x]) acc xs
                                | p x = loop [x] (newacc curr acc) xs
                                     where newacc [] acc = acc
-                                          newacc curr acc = acc ++ [curr]
+                                          newacc curr acc = acc ++ [curr]https://github.com/Pitiver71/haskell-tuto.git
 
 firstWords :: String -> IO()
 firstWords str = printall $ map (\xs -> head xs) $ map words $ lines str
@@ -42,7 +42,6 @@ mySum [] = 0
 mySum xs = loop xs 0
       where loop [] acc = acc
             loop (x:xs) acc = loop xs $ acc + x
-
 
 asInt :: String -> Int
 asInt xs = loop 0 xs
